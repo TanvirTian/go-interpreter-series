@@ -46,10 +46,10 @@ func NewInterpreter(text string) *Interpreter {
 }
 
 func (i *Interpreter) error() {
-	panic("ERROR parsing input")
+	panic("Syntax Bhul")
 }
 
-func (i *Interpreter) advance() {
+func (i *Interpreter) cursor() {
 	i.pos++
 	if i.pos > len(i.text)-1 {
 		i.currentChar = 0 //end of input
@@ -60,7 +60,7 @@ func (i *Interpreter) advance() {
 
 func (i *Interpreter) skipWhiteSpace() {
 	for i.currentChar != 0 && unicode.IsSpace(i.currentChar) {
-		i.advance()
+		i.cursor()
 	}
 }
 
@@ -68,7 +68,7 @@ func (i *Interpreter) integer() int {
 	result := ""
 	for i.currentChar != 0 && unicode.IsDigit(i.currentChar) {
 		result += string(i.currentChar)
-		i.advance()
+		i.cursor()
 	}
 
 	val, _ := strconv.Atoi(result)
@@ -87,12 +87,12 @@ func (i *Interpreter) getNextToken() Token {
 		}
 
 		if i.currentChar == '+' {
-			i.advance()
+			i.cursor()
 			return Token{Type: JOG, Value: "+"}
 		}
 
 		if i.currentChar == '-' {
-			i.advance()
+			i.cursor()
 			return Token{Type: BIYOG, Value: "-"}
 		}
 
