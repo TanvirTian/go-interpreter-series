@@ -1,37 +1,19 @@
-package main
+package interpreter 
 
 import (
-	"bufio"
-	"fmt"
-	"os"
 	"strconv"
-	"strings"
 	"unicode"
+	
+	"interpreter/constant"
+	"interpreter/token"
+	
 )
-
-const (
-	INTEGER = "INTEGER"
-	JOG = "JOG"
-	BIYOG = "BIYOG"
-	EOF = "EOF"
-
-)
-
-//token struct 
-type Token struct {
-	Type  string 
-	Value interface{}
-}
-
-func (t Token) String() string {
-	return fmt.Sprintf("Token(%s, %v)", t.Type, t.Value)
-}
 
 //interpreter struct
 type Interpreter struct {
 	text         string 
 	pos          int 
-	currentToken Token 
+	currentToken token.Token 
 	currentChar  rune
 }
 
@@ -45,7 +27,7 @@ func NewInterpreter(text string) *Interpreter {
 	return i 
 }
 
-func (i *Interpreter) error() {
+func (i *Interpreter) Error() {
 	panic("Syntax Bhul")
 }
 
@@ -58,13 +40,13 @@ func (i *Interpreter) cursor() {
 	}
 }
 
-func (i *Interpreter) skipWhiteSpace() {
+func (i *Interpreter) SkipWhiteSpace() {
 	for i.currentChar != 0 && unicode.IsSpace(i.currentChar) {
 		i.cursor()
 	}
 }
 
-func (i *Interpreter) integer() int {
+func (i *Interpreter) Integer() int {
 	result := ""
 	for i.currentChar != 0 && unicode.IsDigit(i.currentChar) {
 		result += string(i.currentChar)
@@ -75,77 +57,61 @@ func (i *Interpreter) integer() int {
 	return val 
 }
 
-func (i *Interpreter) getNextToken() Token {
+func (i *Interpreter) GetNextToken() token.Token {
 	for i.currentChar != 0 {
 		if unicode.IsSpace(i.currentChar) {
-			i.skipWhiteSpace()
+			i.SkipWhiteSpace()
 			continue
 		}
 
 		if unicode.IsDigit(i.currentChar) {
-			return Token{Type: INTEGER, Value: i.integer()}
+			return token.Token{Type: constant.INTEGER, Value: i.Integer()}
 		}
 
 		if i.currentChar == '+' {
 			i.cursor()
-			return Token{Type: JOG, Value: "+"}
+			return token.Token{Type: constant.JOG, Value: "+"}
 		}
 
 		if i.currentChar == '-' {
 			i.cursor()
-			return Token{Type: BIYOG, Value: "-"}
+			return token.Token{Type: constant.BIYOG, Value: "-"}
 		}
 
-		i.error()
+		i.Error()
 	}
-	return Token{Type: EOF, Value: nil}
+	return token.Token{Type: constant.EOF, Value: nil}
 }
 
-func (i *Interpreter) eat(tokenType string) {
+func (i *Interpreter) Eat(tokenType string) {
 	if i.currentToken.Type == tokenType {
-		i.currentToken = i.getNextToken()
+		i.currentToken = i.GetNextToken()
 	} else {
-		i.error()
+		i.Error()
 	}
 }
 
-func (i *Interpreter) expr() int {
+func (i *Interpreter) Expression() int {
 	//first token
-	i.currentToken  =i.getNextToken()
+	i.currentToken  =i.GetNextToken()
 
 	left := i.currentToken
-	i.eat(INTEGER)
+	i.Eat(constant.INTEGER)
 
 	op := i.currentToken
-	if op.Type == JOG {
-		i.eat(JOG)
+	if op.Type == constant.JOG {
+		i.Eat(constant.JOG)
 	} else {
-		i.eat(BIYOG)
+		i.Eat(constant.BIYOG)
 	}
 
 	right := i.currentToken
-	i.eat(INTEGER)
+	i.Eat(constant.INTEGER)
 
 	//calculate result
-	if op.Type == JOG {
+	if op.Type == constant.JOG {
 		return left.Value.(int) + right.Value.(int)
 	} else {
 		return left.Value.(int) - right.Value.(int)
-	}
-}
-
-func main(){
-	reader := bufio.NewReader(os.Stdin)
-	for {
-		fmt.Print(">> ")
-		text, _ := reader.ReadString('\n')
-		text = strings.TrimSpace(text)
-		if text == "" {
-			continue
-		}
-
-		interpreter := NewInterpreter(text)
-		result := interpreter.expr()
-		fmt.Println(result)
 	}
 }
