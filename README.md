@@ -14,7 +14,17 @@ This series walks through the foundations of interpreters:
 - Parsing (understanding expressions)  
 - Evaluating (producing results)  
 
-Currently, the interpreter supports **basic arithmetic expressions** like addition and subtraction.
+Currently, the interpreter supports:
+
+✅ Addition (+)
+
+✅ Subtraction (-)
+
+✅ Multiplication (*)
+
+✅ Division (/)
+
+✅ Chained arithmetic expressions (e.g. 12 / 3 * 2 + 4 - 1)
 
 ---
 
@@ -24,9 +34,10 @@ Make sure you have Go installed ([download here](https://go.dev/dl/)).
 
 Clone the repo:
 ```bash
-git clone https://github.com/<your-username>/go-interpreter-series.git
+git clone https://github.com/TanvirTian/go-interpreter-series.git
 cd go-interpreter-series
 ```
+
 
 
 
