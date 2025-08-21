@@ -14,21 +14,14 @@ This series walks through the foundations of interpreters:
 - Parsing (understanding expressions)  
 - Evaluating (producing results)  
 
-Currently, the interpreter supports:
-
-✅ Addition (+)
-
-✅ Subtraction (-)
-
-✅ Multiplication (*)
-
-✅ Division (/)
-
-✅ Chained arithmetic expressions (e.g. 12 / 3 * 2 + 4 - 1)
-
-✅ Parentheses for grouping (e.g. `7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8)`)  
-
----
+## 📂 Versions
+ Each version progressively adds new features to the interpreter:
+  
+- **Version 1** → Supports addition and subtraction `1 + 1`, `2 - 1`
+- **Version 2** → Supports chained addition & substraction  `30+40-20+5`  
+- **Version 3** → Supports multiplication and division `2 * 3`, `6 / 2`
+- **Version 4** → Supports Chained arithmetic expressions (`2 + 3 - 1 * 4 / 2`)  
+- **Version 5** → Supports full arithmetic with nested parentheses  `7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8))`
 
 ## 🚀 Running the Project
 
@@ -39,6 +32,7 @@ Clone the repo:
 git clone https://github.com/TanvirTian/go-interpreter-series.git
 cd go-interpreter-series
 ```
+
 
 
 
