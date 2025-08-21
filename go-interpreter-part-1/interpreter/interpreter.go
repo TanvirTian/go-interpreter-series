@@ -57,6 +57,7 @@ func (i *Interpreter) Integer() int {
 	return val 
 }
 
+
 func (i *Interpreter) GetNextToken() token.Token {
 	for i.currentChar != 0 {
 		if unicode.IsSpace(i.currentChar) {
