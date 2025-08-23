@@ -20,7 +20,7 @@ func (p *Parser) Eat(tokenType string) {
 	if p.currentToken.Type == tokenType {
 		p.currentToken = p.lexer.GetNextToken()
 	} else {
-		panic("Syntax Bhul: Abar Check Korun")
+		panic("Syntax Bhul: Abar Check Korun :(")
 	}
 }
 
@@ -36,7 +36,7 @@ func (p *Parser) Factor() ast.AST {
         return node
     }
   
-    panic("Bhul Syntax: Bujhte partesi na ekhane ki ache")
+    panic("Bhul Syntax: Bujhte partesi na ekhane ki ache :(")
 }
 
 
