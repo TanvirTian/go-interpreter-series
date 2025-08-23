@@ -22,6 +22,7 @@ This series walks through the foundations of interpreters:
 - **Version 3** → Supports multiplication and division `2 * 3`, `6 / 2`
 - **Version 4** → Supports Chained arithmetic expressions (`2 + 3 - 1 * 4 / 2`)  
 - **Version 5** → Supports full arithmetic with nested parentheses  `7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8))`
+-  **Version 6** →  Has a basic Parser & AST with all the  previous feature intact
 
 ## 🚀 Running the Project
 
@@ -32,8 +33,3 @@ Clone the repo:
 git clone https://github.com/TanvirTian/go-interpreter-series.git
 cd go-interpreter-series
 ```
-
-
-
-
-
