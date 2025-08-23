@@ -80,7 +80,7 @@ func (l *Lexer) GetNextToken() token.Token {
 			l.cursor()
 			return token.Token{token.RPAREN, ")"}
 		default:
-			panic("Character Bhul")
+			panic("Character Bhul: Abar Check Korun")
 		}
 	}
 	return token.Token{token.EOF, nil}

@@ -20,23 +20,9 @@ func (p *Parser) Eat(tokenType string) {
 	if p.currentToken.Type == tokenType {
 		p.currentToken = p.lexer.GetNextToken()
 	} else {
-		panic("Invalid syntax")
+		panic("Syntax Bhul: Abar Check Korun")
 	}
 }
-
-// func (p *Parser) Factor() ast.AST {
-// 	tok := p.currentToken
-// 	if tok.Type == token.INTEGER {
-// 		p.Eat(token.INTEGER)
-// 		return ast.Num{token.Token: tok, Value: token.Value.(int)}
-// 	} else if tok.Type == token.LPAREN {
-// 		p.Eat(token.LPAREN)
-// 		node := p.Expressionession()
-// 		p.Eat(token.RPAREN)
-// 		return node
-// 	}
-// 	panic("Syntax Bhul")
-// }
 
 func (p *Parser) Factor() ast.AST {
     tok := p.currentToken
@@ -49,7 +35,8 @@ func (p *Parser) Factor() ast.AST {
         p.Eat(token.RPAREN)
         return node
     }
-    panic("Syntax Bhul")
+  
+    panic("Bhul Syntax: Bujhte partesi na ekhane ki ache")
 }
 
 
