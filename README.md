@@ -23,6 +23,7 @@ This series walks through the foundations of interpreters:
 - **Version 4** → Supports Chained arithmetic expressions (`2 + 3 - 1 * 4 / 2`)  
 - **Version 5** → Supports full arithmetic with nested parentheses  `7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8))`
 -  **Version 6** →  Has a basic Parser & AST with all the  previous feature intact
+- **Version 7** → Supports  Positive/Negative signs before numbers or expressions with all previous features still working `-10`, `10---3` `+2` `10--+-- 2`
 
 ## 🚀 Running the Project
 
